@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfvmkojccaklv"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_mdnk4"]
+[ext_resource type="Texture2D" uid="uid://d2s7f84o0goij" path="res://assets/paddleBlu.png" id="2_pywf5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c6qlj"]
+radius = 5.0
+height = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtic"]
+
+[node name="Pong" type="Node2D"]
+
+[node name="Player" type="StaticBody2D" parent="."]
+rotation = 1.5708
+script = ExtResource("1_mdnk4")
+
+[node name="PaddleBlu" type="Sprite2D" parent="Player"]
+position = Vector2(-9, -2)
+scale = Vector2(0.394231, 0.375)
+texture = ExtResource("2_pywf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-9, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c6qlj")
+debug_color = Color(0.899871, 0.273278, 0.396321, 0.42)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-43, -2)
+shape = SubResource("CircleShape2D_hqtic")
