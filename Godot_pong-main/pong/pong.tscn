@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfvmkojccaklv"]
+
+[ext_resource type="Texture2D" uid="uid://d2s7f84o0goij" path="res://assets/paddleBlu.png" id="2_pywf5"]
+[ext_resource type="Script" path="res://player_2.gd" id="3_8muts"]
+[ext_resource type="Script" path="res://player_1.gd" id="3_c8iqp"]
+[ext_resource type="Texture2D" uid="uid://cpgosxu46ca0l" path="res://assets/paddleRed.png" id="3_ltxfi"]
+[ext_resource type="Script" path="res://ball.gd" id="5_lhdyg"]
+[ext_resource type="Texture2D" uid="uid://b57cq7fcnfiv3" path="res://assets/ballBlue.png" id="5_xghwo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mri8n"]
+radius = 12.0
+height = 104.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l7u4"]
+size = Vector2(1290, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlb22"]
+radius = 11.0
+
+[node name="Pong" type="Node2D"]
+
+[node name="Player1" type="StaticBody2D" parent="." groups=["Player"]]
+position = Vector2(15, 360)
+script = ExtResource("3_c8iqp")
+
+[node name="PaddleBlu" type="Sprite2D" parent="Player1"]
+position = Vector2(1, -1)
+rotation = 1.5708
+texture = ExtResource("2_pywf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+shape = SubResource("CapsuleShape2D_mri8n")
+debug_color = Color(0.861265, 0.343553, 0.298397, 0.42)
+
+[node name="Player2" type="StaticBody2D" parent="." groups=["Player"]]
+position = Vector2(1265, 360)
+script = ExtResource("3_8muts")
+
+[node name="PaddleRed" type="Sprite2D" parent="Player2"]
+position = Vector2(1, -1)
+rotation = 1.5708
+texture = ExtResource("3_ltxfi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_mri8n")
+debug_color = Color(0.861265, 0.343553, 0.298397, 0.42)
+
+[node name="LimiteSuperior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimiteSuperior"]
+position = Vector2(635, 0)
+shape = SubResource("RectangleShape2D_8l7u4")
+
+[node name="ball" type="Area2D" parent="."]
+position = Vector2(659, 352)
+script = ExtResource("5_lhdyg")
+
+[node name="Sprite2D" type="Sprite2D" parent="ball"]
+texture = ExtResource("5_xghwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
+shape = SubResource("CircleShape2D_dlb22")
+debug_color = Color(0.996227, 0, 0.190787, 0.42)
+
+[connection signal="body_entered" from="ball" to="ball" method="_on_body_entered"]
