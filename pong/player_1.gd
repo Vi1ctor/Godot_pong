@@ -3,8 +3,11 @@ var  SPEED: int  = 360
 var  Y_MAX: int  = 52
 var  Y_MIN: int  = 666
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("paddles")
 	pass # Replace with function body.
 
 
@@ -15,4 +18,4 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("move_down_paddle_left"):
 		position.y += SPEED * delta
 		
-	#position.y	= clamp(position.y,Y_MAX, Y_MIN)
+	position.y	= clamp(position.y,Y_MAX, Y_MIN)

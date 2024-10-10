@@ -5,6 +5,7 @@ var  Y_MIN: int  = 666
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("paddles")
 	pass # Replace with function body.
 
 
